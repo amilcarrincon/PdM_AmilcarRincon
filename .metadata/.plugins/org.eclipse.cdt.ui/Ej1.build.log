@@ -1,0 +1,7 @@
+21:11:11 **** Incremental Build of configuration Debug for project Ej1 ****
+make -j8 all 
+Src/main.d:1: *** multiple target patterns.  Stop.
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+21:11:12 Build Failed. 1 errors, 0 warnings. (took 610ms)
+
