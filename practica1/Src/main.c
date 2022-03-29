@@ -93,7 +93,7 @@ int main(void)
 		  direction = !direction; //FIXME: use bool data type
 
 	  BSP_LED_On(secuence[index]);
-	  HAL_Delay(200);
+	  HAL_Delay(500);
 	  BSP_LED_Off(secuence[index]);
 
 	  if(direction == CLOCKWISE){
