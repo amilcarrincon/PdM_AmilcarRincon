@@ -2,7 +2,7 @@
  * API_debounce.c
  *
  *  Created on: Mar 26, 2022
- *      Author: gianfranco
+ *      Author: Amilcar Rincon Charris
  */
 
 
@@ -19,11 +19,17 @@ static delay_t delay_button;
 static debounceState_t buttonState;
 static bool_t buttonPressed = false;
 
+/**
+ * @brief Inicializa la maquina de estado anti-rebote
+ */
 
 void debounceFSM_init(void) {
 	buttonState = BUTTON_UP;
 }
 
+/**
+ * @brief Actualiza la maquina de estado anti-rebote
+ */
 void debounceFSM_update(void) {
 	switch (buttonState)
 	{
@@ -39,6 +45,7 @@ void debounceFSM_update(void) {
 		{
 			if (BSP_PB_GetState(BUTTON_USER))
 			{
+				uartsendString("Rising edge detected\r\n");
 				buttonState = BUTTON_DOWN;
 			}
 			else
@@ -59,6 +66,7 @@ void debounceFSM_update(void) {
 		{
 			if (!BSP_PB_GetState(BUTTON_USER))
 			{
+				uartsendString("Falling edge detected\r\n");
 				buttonPressed = true;
 				buttonState = BUTTON_UP;
 			}
@@ -73,6 +81,12 @@ void debounceFSM_update(void) {
 		break;
 	}
 }
+
+/**
+ * @brief Indica si el boton ha sido presionado
+ * @retval True si el boton ha sido presionado sino retorna false
+ */
+
 
 bool_t readKey(void) {
 	if (buttonPressed) {

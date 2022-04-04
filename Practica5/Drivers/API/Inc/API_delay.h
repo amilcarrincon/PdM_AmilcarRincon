@@ -2,7 +2,7 @@
  * API_delay.h
  *
  *  Created on: Mar 19, 2022
- *      Author: gianfranco
+ *      Author: Amilcar Rincon Charris
  */
 
 #ifndef API_API_DELAY_H_
@@ -12,6 +12,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <inttypes.h>
+#include <string.h>
 
 #include "stm32f4xx_hal.h"
 

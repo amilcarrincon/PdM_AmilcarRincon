@@ -96,6 +96,9 @@ int main(void)
 
   debounceFSM_init();
 
+  uartinit();
+
+
   /* Infinite loop */
   while (1)
   {
