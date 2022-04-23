@@ -1,15 +1,24 @@
-# Preguntas
+Práctica 5
+Objetivo:
+Implementar un módulo de software sencillo para trabajar con la UART. 
+Punto 1
+Implementar un módulo de software en un archivos fuente API_uart.c con su correspondiente archivo de cabecera API_uart.h y ubicarlos en el proyecto dentro de  las carpetas /drivers/API/src y /drivers/API/inc, respectivamente.
+En API_uart.h se deben ubicar los prototipos de las funciones públicas.
+bool_t uartinit();
+void uartsendString(uint8_t * pstring);
+void uartSendStringSize(uint8_t * pstring, uint16_t size);
+void uartReceiveStringSize(uint8_t * pstring, uint16_t size);
 
-1. ¿Se pueden cambiar los tiempos de encendido de cada led fácilmente en un solo lugar 
-del código o estos están _hardcodeados_?
+En API_uart.c se deben ubicar los prototipos de las funciones privadas y la implementación de todas las funciones de módulo, privadas y públicas.
+Consideraciones para la implementación:
+uartInit() debe realizar toda la inicialización de la UART.  Adicionalmente, debe imprimir por la terminal serie un mensaje con sus parámetros de configuración.
 
-Se pueden cambiar facilmente y en un solo lugar. Se encuentran definidos como macro.
+La función devuelve:
+true: si la inicialización es exitosa.
+false: si la inicialización no es exitosa.
+uartSendString(uint8_t *pstring) recibe un puntero a un string que se desea enviar por la UART completo (hasta el caracter ‘\0’) y debe utilizar la función de la HAL HAL_UART_Transmit(...) para transmitir el sting.
+uartSendStringsize(uint8_t * pstring, uint16_t size) recibe un puntero a un string que se desea enviar por la UART y un entero con la cantidad de caracteres que debe enviar. La función debe utilizar HAL_UART_Transmit(...) para transmitir el sting.
 
-2. ¿Qué bibliotecas estándar se debieron agregar a API_delay.h para que el código compile? Si las funcionalidades de una API propia crecieran, habría que pensar cuál sería el mejor lugar para incluir esas bibliotecas y algunos typedefs que se usan en el ejercicio.
+Punto 2
+Sobre el ejercicio de la práctica 4, implementar un programa que utilice el módulo de uart para informar al usuario cuando se producen los flancos ascendente y descendente.
 
-Se debieron agregar _stdint_ y _stdbool_.
-
-3. ¿Es adecuado el control de los parámetros pasados por el usuario que se hace en las funciones implementadas? ¿Se controla que sean valores válidos? ¿Se controla que estén dentro de los rangos correctos?
-
-En las funciones se verifica que el puntero a la _struct_ delay_t no sea un puntero _NULL_. Tambien
-se verifica que la duracion no sea 0 ya que carece de sentido. 
